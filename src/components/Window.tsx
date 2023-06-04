@@ -1,3 +1,4 @@
+import { IconX } from "@tabler/icons-react";
 import { ReactNode, useEffect, useRef, useState } from "react";
 export default function ({ header, children }: { header: string, children: ReactNode }) {
 
@@ -32,8 +33,8 @@ export default function ({ header, children }: { header: string, children: React
     // Position drag
     useEffect(() => {
 
-        if(!headRef.current) return;
-        
+        if (!headRef.current) return;
+
         const dragStart = (e: MouseEvent) => {
 
             setDragging(v => [true, v[1]]);
@@ -45,11 +46,11 @@ export default function ({ header, children }: { header: string, children: React
 
             const drag = (e: MouseEvent) => {
                 const { clientX, clientY } = e;
-                
+
                 let clampedX = clientX - offsetX;
                 clampedX = Math.max(clampedX, 0);
                 clampedX = Math.min(clampedX, window.innerWidth - width);
-                
+
                 let clampedY = clientY - offsetY;
                 clampedY = Math.max(clampedY, 0);
                 clampedY = Math.min(clampedY, window.innerHeight - height);
@@ -80,7 +81,7 @@ export default function ({ header, children }: { header: string, children: React
     // Resize drag
     useEffect(() => {
 
-        if(!sizeRef.current) return;
+        if (!sizeRef.current) return;
 
         const dragStart = (e: MouseEvent) => {
 
@@ -134,17 +135,17 @@ export default function ({ header, children }: { header: string, children: React
                 w-full h-full
                 flex flex-col
                 px-2 pb-4
-                border border-neutral-500
+                border-2 border-black
                 rounded-lg shadow-md
                 relative overflow-clip
             ">
-                <header className="border-b mb-2 pb-1 flex items-center">
-                    <h2 ref={headRef} className="pt-2 flex-1 select-none cursor-move">
+                <header className="pt-2 border-b-2 border-black -mx-2 px-3 mb-2 pb-2 flex items-center bg-green-500">
+                    <h2 ref={headRef} className="flex-1 select-none cursor-move font-semibold text-2xl">
                         {header}
                     </h2>
                     <div>
-                        <button className="w-6 h-6 bg-transparent hover:bg-neutral-50 rounded hover:shadow grid items-center transition">
-                            <span className="text-sm">x</span>
+                        <button className="w-6 h-6 bg-transparent hover:bg-neutral-50 rounded hover:shadow grid transition">
+                            <IconX />
                         </button>
                     </div>
                 </header>
